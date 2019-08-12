@@ -9,16 +9,18 @@ import javax.persistence.*;
 @Table(name="categoria")
 public class Categoria {
 
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long codigo;
+    private Long codigo;
     private String nome;
 
 
-    public long getCodigo() {
+    public Long getCodigo() {
         return codigo;
     }
-    public void setCodigo(long codigo) {
+    public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
 
@@ -29,18 +31,20 @@ public class Categoria {
         this.nome = nome;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Categoria)) return false;
 
         Categoria categoria = (Categoria) o;
 
-        return codigo == categoria.codigo;
+        return getCodigo().equals(categoria.getCodigo());
     }
 
     @Override
     public int hashCode() {
-        return (int) (codigo ^ (codigo >>> 32));
+        return getCodigo().hashCode();
     }
+
 }
