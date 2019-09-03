@@ -1,9 +1,11 @@
 package com.project.mps.projmps.resourse;
 
+import com.project.mps.projmps.event.RecursoCriadoEvent;
 import com.project.mps.projmps.model.Categoria;
 import com.project.mps.projmps.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -36,8 +38,8 @@ public class CategoriaResourse {
     public ResponseEntity<Categoria> salvar(@RequestBody Categoria categoria, HttpServletResponse response){
         Categoria categoriaSalva = categoriaRepository.save(categoria);
 
-//        publisher.publishEvent();
-//        return ResponseEntity.created(uri).body(categoriaSalva);
+        publisher.publishEvent(new RecursoCriadoEvent(this, response, categoriaSalva.getCodigo()));
+        return ResponseEntity.status(HttpStatus.CREATED).body(categoriaSalva);
     }
 
     @GetMapping("/{codigo}")
