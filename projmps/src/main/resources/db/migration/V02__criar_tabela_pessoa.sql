@@ -1,0 +1,2 @@
+insert into  pessoa(nome, logradouro, bairro, complemento, numero, cep,  estado, cidade, ativo)
+ values ('Marcos pereira','Av. Getulio vargas', 'Centro', 'Proximo mercado reis','100','76.610-000','Goias','Itumbiara',true);
