@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
@@ -39,7 +40,7 @@ public class PessoaResourse {
     }
 
     @PostMapping
-    public ResponseEntity<Pessoa> salvar(@RequestBody Pessoa pessoa, HttpServletResponse response){
+    public ResponseEntity<Pessoa> salvar(@Valid @RequestBody Pessoa pessoa, HttpServletResponse response){
          Pessoa pessoaSalva = pessoaRepository.save(pessoa);
 
         publisher.publishEvent(new RecursoCriadoEvent(this,response,pessoaSalva.getId()));

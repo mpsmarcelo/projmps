@@ -1,6 +1,7 @@
 package com.project.mps.projmps.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by Marcelo on 07/05/2019.
@@ -14,6 +15,8 @@ public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
+
+    @NotNull
     private String nome;
 
 
